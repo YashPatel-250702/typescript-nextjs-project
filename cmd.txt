@@ -1,0 +1,26 @@
+Step 1: Create next js project 
+
+      npx create-next-app@latest
+
+
+Step 2: cd <Your Project name>
+
+Step 3: initialise  prisma 
+     
+     npx prisma init 
+
+Step 4: Create tables using prisma.schema model.
+
+
+Step 5: create Typescript models to parse data or other operations.
+
+
+Step 6: install prisma client
+
+       npm install @prisma/client@latest
+
+
+       npx prisma generate
+
+       npx prisma -v
+
