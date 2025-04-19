@@ -24,3 +24,9 @@ Step 6: install prisma client
 
        npx prisma -v
 
+
+Step 7: install zod library for validation
+
+        npm install zod
+
+

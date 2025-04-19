@@ -6,7 +6,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../app/generated/prisma"
 }
 
 datasource db {
@@ -20,7 +19,20 @@ enum Role {
   AllRounder
   WicketKeeper
 }
+enum UserRole{
+  ADMIN
+  USER
+}
 
+model User{
+  id         Int       @id @default(autoincrement())
+  name       String
+  email      String    @unique
+  password   String
+  role       UserRole  @default(USER)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+}
 
 model Teams{
   id          Int      @id @default(autoincrement())
@@ -42,6 +54,7 @@ model Player {
   jersyNo         Int       @unique
   role            Role      @default(Batsman)
   totalRuns       Int
+  totalWickets    Int
   noOfMatchPlayed Int
   teamId          Int
   createdAt       DateTime  @default(now())
