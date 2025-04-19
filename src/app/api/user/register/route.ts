@@ -3,6 +3,9 @@ import { User } from "@/models/userModels/UserModel";
 import { createUser } from "@/services/userService/UserService";
 import { userDataValidation } from "@/validations/userValidation/UserDataValidation";
 import { NextRequest, NextResponse } from "next/server";
+import bcrypt from 'bcrypt';
+import { use } from "react";
+
 export async function POST(req: NextRequest) {
     try {
         console.log(" POST /api/user/register hit");
@@ -23,7 +26,7 @@ export async function POST(req: NextRequest) {
           return NextResponse.json(errors, { status: 400 });
         }
         
-        
+      userData.password = await bcrypt.hash(userData.password, 10);
 
         const userId: number = await createUser(userData);
         if (!userId) {

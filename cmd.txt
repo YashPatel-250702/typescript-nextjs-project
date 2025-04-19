@@ -29,4 +29,15 @@ Step 7: install zod library for validation
 
         npm install zod
 
+ npm install --save-dev @types/bcrypt
+
+ npm install jose
+
+
+npm install -g @nestjs/cli
+
+nest g gu auth/decoraors  --flat --no-spec
+nest g gu auth/gaurds/roles  --flat --no-spec
+
+
 
