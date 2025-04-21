@@ -34,3 +34,8 @@ export const findTeamById = async (id: number)=> {
   return existingTeam;
 
 }
+
+export const findAll=async()=>{
+  const allTeams=await prisma.teams.findMany();
+  return allTeams;
+}
