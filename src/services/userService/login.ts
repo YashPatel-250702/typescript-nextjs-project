@@ -4,13 +4,13 @@ import bcrypt from "bcrypt";
 import { generateToekn } from "../authService/JwtToken";
 import { LoginResponse } from "@/response/LoginResponse";
 import { InvalidPasswordError } from "@/customErrors/InavlidPasswordError";
+import { checkExistingUserByEmail } from "./UserService";
 
 
 export const loginAndGenerateToken=async(email:string,password:string):Promise<LoginResponse>=>{
 
-    const user=await prisma.user.findUnique({
-        where:{email:email}
-    });
+    const user=await checkExistingUserByEmail(email);
+
     if(!user){
         throw new UserNotFoundError("User not found with email: "+email);
     }
@@ -19,7 +19,6 @@ export const loginAndGenerateToken=async(email:string,password:string):Promise<L
     if(!isPasswordMatch){
         throw new InvalidPasswordError("Invalid password");
     }
-
     try{
         const token= await generateToekn(user.id,user.role);
         const tokenResponse:LoginResponse={
