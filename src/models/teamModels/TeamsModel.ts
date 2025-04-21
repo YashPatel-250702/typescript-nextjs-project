@@ -7,7 +7,6 @@ export interface Team {
     coach: string;
     captain: string;
     isActive: boolean;
-    createdAt: Date;
-    updatedAt: Date;
-    players: Player[];
+    createdAt?: Date;
+    updatedAt?: Date;
 }

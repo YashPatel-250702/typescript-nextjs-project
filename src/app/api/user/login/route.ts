@@ -1,8 +1,10 @@
 import { InvalidPasswordError } from "@/customErrors/InavlidPasswordError";
 import { UserNotFoundError } from "@/customErrors/UserNotFOundError";
+import { sendError } from "@/response/error";
 import { LoginResponse } from "@/response/LoginResponse";
 import { loginAndGenerateToken } from "@/services/userService/login";
 import { NextRequest, NextResponse } from "next/server";
+
 export async function POST(req: NextRequest) {
 
     try {  
@@ -22,23 +24,23 @@ export async function POST(req: NextRequest) {
     } catch (error) {
 
         if(error instanceof UserNotFoundError){
-            return NextResponse.json(
-                { error: error.message },
-                { status: 404 }
-            )
+            return sendError(
+                error.message ,
+                404
+           )
         }
         
         if(error instanceof InvalidPasswordError){
-            return NextResponse.json(
-                { error: error.message },
-                { status: 400 }
+            return sendError(
+                 error.message ,
+                 400 
             )
         }
 
         console.error("Error occured while login",error);
-        return NextResponse.json(
-            { error: "Some error occured while login" },
-            { status: 500 });
+        return sendError(
+            "Some error occured while login" ,
+             500 );
         
     }
 }
