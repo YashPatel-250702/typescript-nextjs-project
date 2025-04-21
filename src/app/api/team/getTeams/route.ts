@@ -2,7 +2,7 @@ import { sendError } from "@/response/error";
 import { getAllTeams, getTeamById } from "@/service/teamService/GetTeams";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req:NextRequest) {
+export async function GET(req:NextRequest):Promise<NextResponse>  {
     try {
       
         const team=await getAllTeams();

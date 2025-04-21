@@ -2,7 +2,7 @@ import { sendError } from "@/response/error";
 import { getAllPlayers } from "@/service/playerService/GetPlayer";
 import { NextRequest,NextResponse } from "next/server";
 
-export async function GET(req: NextRequest) {
+export async function GET(req: NextRequest) :Promise<NextResponse> {
     try {
         const allPlayers=await getAllPlayers()
         return NextResponse.json({message:"Players fetched successfully",data:allPlayers},{status:200});

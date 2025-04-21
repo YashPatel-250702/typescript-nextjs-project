@@ -6,7 +6,7 @@ import { playerDataValidation } from "@/validations/PlayerValidation";
 
 import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req: NextRequest){
+export async function POST(req: NextRequest):Promise<NextResponse> {
        try {
           const player:Player  = await req.json();
 

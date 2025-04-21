@@ -2,7 +2,7 @@ import { sendError } from "@/response/error";
 import { getPlayerById } from "@/service/playerService/GetPlayer";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: NextRequest,{ params }: { params: { id: string }}) {
+export async function GET(req: NextRequest,{ params }: { params: { id: string }}):Promise<NextResponse>  {
    
     try {
         const id=params.id;
