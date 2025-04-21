@@ -4,11 +4,20 @@ import { NextRequest, NextResponse } from "next/server";
 import bcrypt from 'bcrypt';
 import { createUser } from "@/service/userService/Register";
 import { sendError } from "@/response/error";
+import { userDataSchema } from "@/validations/UserDataValidation";
+import { record } from "zod";
+import { sendValidationResponse } from "@/response/ValidationResponse";
 
 export async function POST(req: NextRequest) {
     try {
 
         const userData: User = await req.json();
+       const validatedData= userDataSchema.safeParse(userData);
+
+       if(!validatedData.success){
+         return sendValidationResponse(validatedData);
+       }
+      
        
         userData.role = userData.role?.toUpperCase() === "ADMIN" ? "ADMIN" : "USER";
         userData.password = await bcrypt.hash(userData.password, 10);
