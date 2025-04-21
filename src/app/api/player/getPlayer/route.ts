@@ -1,5 +1,5 @@
 import { sendError } from "@/response/error";
-import { getAllPlayers } from "@/services/playerService/GetPlayer";
+import { getAllPlayers } from "@/service/playerService/GetPlayer";
 import { NextRequest,NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {

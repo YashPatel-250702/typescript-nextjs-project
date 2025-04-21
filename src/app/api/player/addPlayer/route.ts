@@ -1,7 +1,7 @@
 
 import { Player } from "@/models/playerModels/PlayerModel";
 import { sendError } from "@/response/error";
-import { addPlayer } from "@/services/playerService/CreatePlayer";
+import { addPlayer } from "@/service/playerService/CreatePlayer";
 
 import { NextRequest, NextResponse } from "next/server";
 

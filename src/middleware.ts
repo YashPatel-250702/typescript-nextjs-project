@@ -1,5 +1,5 @@
  import { NextRequest, NextResponse } from "next/server";
- import { verifyJwt } from "./services/authService/JwtToken";
+ import { verifyJwt } from "./service/authService/JwtToken";
 
 
 

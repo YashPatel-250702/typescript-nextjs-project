@@ -1,6 +1,6 @@
 import { Team } from "@/models/teamModels/TeamsModel";
 import { sendError } from "@/response/error";
-import { createTeam } from "@/services/teamService/CreateTeam";
+import { createTeam } from "@/service/teamService/CreateTeam";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req:NextRequest) {

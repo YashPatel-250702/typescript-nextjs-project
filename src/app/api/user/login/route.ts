@@ -2,7 +2,7 @@ import { InvalidPasswordError } from "@/customErrors/InavlidPasswordError";
 import { UserNotFoundError } from "@/customErrors/UserNotFOundError";
 import { sendError } from "@/response/error";
 import { LoginResponse } from "@/response/LoginResponse";
-import { loginAndGenerateToken } from "@/services/userService/login";
+import { loginAndGenerateToken } from "@/service/userService/login";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
