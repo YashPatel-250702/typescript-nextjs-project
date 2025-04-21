@@ -1,15 +1,13 @@
 import { NextResponse } from "next/server";
 
-export function sendValidationResponse(validatedData:any) {
-    if (!validatedData.success) {
+export function sendValidationResponse(validatedData:any):NextResponse {
+   
         const error: Record<string, string> = {};
-      
-        for (const issue of validatedData.error.issues) {
-          const field = issue.path[0] as string;
-          const errorMessage = issue.message;
-          error[field] = errorMessage;
-        }
-      
+
+        validatedData.error.issues.map((issue: any) => {
+          error[ issue.path[0]] = issue.message;  
+        });
+
         return NextResponse.json(error, { status: 400 });
-      }
+      
 }

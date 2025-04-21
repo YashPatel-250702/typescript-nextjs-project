@@ -20,7 +20,8 @@ export const loginAndGenerateToken=async(email:string,password:string):Promise<L
         throw new InvalidPasswordError("Invalid password");
     }
     try{
-        const token= await generateToekn(user.id,user.role);
+        const payload={userId:user.id,role:user.role};
+        const token= await generateToekn(payload);
         const tokenResponse:LoginResponse={
             userId:user.id,
             message:"Login successfully",

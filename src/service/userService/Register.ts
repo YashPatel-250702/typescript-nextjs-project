@@ -2,7 +2,7 @@ import { User } from "@/models/userModels/UserModel";
 import { UserAlreadyExistsError } from "@/customErrors/UserAlreadyExistByError";
 import { checkExistingUserByEmail, createNewUser } from "./UserService";
 
-export const createUser = async (userData: User) => {
+export const createUser = async (userData: User) :Promise<number>=> {
 
     const exitingUserByEmail = await checkExistingUserByEmail(userData.email);
     if (exitingUserByEmail) {

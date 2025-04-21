@@ -5,7 +5,7 @@ import { createTeam } from "@/service/teamService/CreateTeam";
 import { teamDataValidation } from "@/validations/TeamDataValidation";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req:NextRequest) {
+export async function POST(req:NextRequest):Promise<NextResponse>  {
     try {
         const team:Team=await req.json();
 

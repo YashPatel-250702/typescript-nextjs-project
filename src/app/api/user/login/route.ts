@@ -5,7 +5,7 @@ import { LoginResponse } from "@/response/LoginResponse";
 import { loginAndGenerateToken } from "@/service/userService/login";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req: NextRequest) {
+export async function POST(req: NextRequest):Promise<NextResponse> {
 
     try {  
        const {email,password}:{email:string,password:string}=await req.json();
