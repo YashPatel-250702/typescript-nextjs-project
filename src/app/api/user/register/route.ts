@@ -2,7 +2,7 @@ import { UserAlreadyExistsError } from "@/customErrors/UserAlreadyExistByError";
 import { User } from "@/models/userModels/UserModel";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from 'bcrypt';
-import { createUser } from "@/services/userService/Register";
+import { createUser } from "@/service/userService/Register";
 import { sendError } from "@/response/error";
 
 export async function POST(req: NextRequest) {
