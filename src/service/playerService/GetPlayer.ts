@@ -18,9 +18,21 @@ export const getPlayerById = async (id: number) => {
 
 export const getAllPlayers=async()=> {
    
-    const allPlayers= await findAll();
+    const allPlayers:Player[]= await findAll();
     if(allPlayers.length==0) {
         throw new Error("No players found");
     }
+    await Promise.all(
+        allPlayers.map(async (player: Player) => {
+            if (player.id) {
+                try {
+                    const imageUrl = await getPlayerImage(player.id);
+                    player.imageUrl = imageUrl;
+                } catch (error) {
+                    player.imageUrl = null;
+                }
+            }
+        })
+    );
     return allPlayers;
 }
