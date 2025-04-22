@@ -37,7 +37,9 @@ export const findPlayerById = async (id: number)=> {
 }
 
 export const findAll=async()=> {
-    const allPlayers=await prisma.player.findMany();
+    const allPlayers=await prisma.player.findMany(
+     // {include:{team:true}}
+    );
     return allPlayers;
 }
 
