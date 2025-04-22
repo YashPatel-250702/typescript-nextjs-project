@@ -10,6 +10,9 @@ export interface Player {
     totalWickets: number;
     noOfMatchPlayed: number;
     teamId: number;
+    imageUrl?:string|null;
     createdAt?: Date;
     updatedAt?: Date;
+
+   
 }
