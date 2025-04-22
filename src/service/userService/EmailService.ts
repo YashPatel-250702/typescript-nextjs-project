@@ -4,6 +4,7 @@ import { EmailModel } from "@/models/userModels/EmailModel";
 
 export async function sendMail(emailModel:EmailModel) {
    try {
+    config();
     const transporter = nodemailer.createTransport({
         host: process.env.BREVO_HOST,
         port: Number(process.env.BREVO_PORT),
