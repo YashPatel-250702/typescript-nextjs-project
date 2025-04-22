@@ -5,6 +5,7 @@ import { generateToekn } from "../authService/JwtToken";
 import { LoginResponse } from "@/response/LoginResponse";
 import { InvalidPasswordError } from "@/customErrors/InavlidPasswordError";
 import { checkExistingUserByEmail } from "./UserService";
+import { JwtPayload } from "@/shared/JwtPayload";
 
 
 export const loginAndGenerateToken=async(email:string,password:string):Promise<LoginResponse>=>{
@@ -20,7 +21,7 @@ export const loginAndGenerateToken=async(email:string,password:string):Promise<L
         throw new InvalidPasswordError("Invalid password");
     }
     try{
-        const payload={userId:user.id,role:user.role};
+        const payload:JwtPayload={userId:user.id,role:user.role};
         const token= await generateToekn(payload);
         const tokenResponse:LoginResponse={
             userId:user.id,
