@@ -40,6 +40,15 @@ export const RolePermission: Record<string, any> = {
         ROLES.ADMIN,
         ROLES.USER
       ]
+    },
+    
+   [HttpMethods.DELETE]: {
+      [API_PATHS.DELETE_PLAYER_BYID]: [
+        ROLES.ADMIN
+      ],
+      [API_PATHS.DELETE_TEAM_BYID]: [
+        ROLES.ADMIN
+      ]
     }
   };
   

@@ -4,13 +4,13 @@ import { addNewTeam, checkExistingTeam } from "./TeamService";
 
 export const createTeam = async (team: Team): Promise<number> => {
 
-  const existingTeam = await checkExistingTeam(team.name);
+  const existingTeam :Team|null= await checkExistingTeam(team.name);
 
   if (existingTeam) {
     throw new Error(`Team with name '${team.name}' already exists`);
   }
 
-  const teamId=await addNewTeam(team);
+  const teamId:number=await addNewTeam(team);
   if(!teamId) {
     throw new Error("Team Not Added With name: "+team.name);
   }

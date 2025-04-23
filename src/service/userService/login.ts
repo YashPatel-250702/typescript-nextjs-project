@@ -6,6 +6,7 @@ import { LoginResponse } from "@/response/LoginResponse";
 import { InvalidPasswordError } from "@/customErrors/InavlidPasswordError";
 import { checkExistingUserByEmail } from "./UserService";
 import { JwtPayload } from "@/shared/JwtPayload";
+import { User } from "@/models/userModels/UserModel";
 
 
 export const loginAndGenerateToken=async(email:string,password:string):Promise<LoginResponse>=>{
@@ -22,7 +23,7 @@ export const loginAndGenerateToken=async(email:string,password:string):Promise<L
     }
     try{
         const payload:JwtPayload={userId:user.id,role:user.role};
-        const token= await generateToekn(payload);
+        const token:string= await generateToekn(payload);
         const tokenResponse:LoginResponse={
             userId:user.id,
             message:"Login successfully",

@@ -43,3 +43,8 @@ export const findAll=async()=> {
     return allPlayers;
 }
 
+export const deletePlayerById=async(id:number)=>{
+   const result= await prisma.player.delete({where:{id:id}}); 
+   return result.id;
+}
+

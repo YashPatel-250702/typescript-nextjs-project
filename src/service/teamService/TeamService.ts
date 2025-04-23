@@ -39,3 +39,8 @@ export const findAll=async()=>{
   const allTeams=await prisma.teams.findMany();
   return allTeams;
 }
+
+export const deleteTeamById=async(id:number)=>{
+  const result= await prisma.teams.delete({where:{id:id}}); 
+  return result.id;
+}

@@ -2,13 +2,13 @@ import { Player } from "@/models/playerModels/PlayerModel";
 import { getPlayerImage } from "./playerimage";
 import { findAll, findPlayerById } from "./PlayerService";
 
-export const getPlayerById = async (id: number) => {
+export const getPlayerById = async (id: number):Promise<Player|null> => {
     const player:Player|null = await findPlayerById(id);
     if(player==null) {
         throw new Error("Player not found");
     }
     try {
-        const imageUrl=await getPlayerImage(id);
+        const imageUrl:string=await getPlayerImage(id);
         player.imageUrl=imageUrl
     } catch (error) {
         player.imageUrl=null
@@ -16,7 +16,7 @@ export const getPlayerById = async (id: number) => {
     return player;
 };  
 
-export const getAllPlayers=async()=> {
+export const getAllPlayers=async():Promise<Player[]>=> {
    
     const allPlayers:Player[]= await findAll();
     if(allPlayers.length==0) {
@@ -26,7 +26,7 @@ export const getAllPlayers=async()=> {
         allPlayers.map(async (player: Player) => {
             if (player.id) {
                 try {
-                    const imageUrl = await getPlayerImage(player.id);
+                    const imageUrl:string = await getPlayerImage(player.id);
                     player.imageUrl = imageUrl;
                 } catch (error) {
                     player.imageUrl = null;

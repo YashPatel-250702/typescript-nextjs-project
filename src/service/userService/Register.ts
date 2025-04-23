@@ -7,12 +7,12 @@ import { AdminEmailMessage, NormalUserMailMessage } from "@/shared/constants/Ema
 
 export const createUser = async (userData: User) :Promise<number>=> {
 
-    const exitingUserByEmail = await checkExistingUserByEmail(userData.email);
+    const exitingUserByEmail:User|null = await checkExistingUserByEmail(userData.email);
     if (exitingUserByEmail) {
         throw new UserAlreadyExistsError("User already exists by email: " + userData.email);
     }
 
-    const userId=await createNewUser(userData);
+    const userId:number=await createNewUser(userData);
     if(!userId) {
         throw new Error("User Not created with email: "+userData.email);
     }

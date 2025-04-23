@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyJwt } from "./service/authService/JwtToken";
-import { UserRole } from "./models/userModels/UserModel";
 import { JwtPayload } from "./shared/JwtPayload";
-import { RolePermission } from "./shared/RoutePermission"
+import { RolePermission } from "./shared/RoutePermission";
 
 export default async function userAuthentication(req: NextRequest) {
   try {
@@ -14,7 +13,7 @@ export default async function userAuthentication(req: NextRequest) {
       return NextResponse.json({ error: "Authorization header is missing" }, { status: 401 });
     }
 
-    const token = header.slice(7); 
+    const token = header.replace("Bearer ", "");
     if (!token) {
       return NextResponse.json({ error: "Token missing in request" }, { status: 401 });
     }
@@ -25,14 +24,20 @@ export default async function userAuthentication(req: NextRequest) {
     }
 
     const userPayload: JwtPayload = payload.payload as JwtPayload;
-    const role: UserRole = userPayload.role;
+    const role = userPayload.role;
 
-    const methodRoles: Record<string, UserRole[]> = RolePermission[method];
+    const methodPaths: Record<string, string[]> = RolePermission[method];
 
-    if (methodRoles && methodRoles[pathname]) {
-      const allowedRoles = methodRoles[pathname];
-      if (!allowedRoles.includes(role)) {
-        return NextResponse.json({ error: "User does not have permission for this route" }, { status: 403 });
+    if (methodPaths) {
+      const matchedPath = Object.keys(methodPaths).find((routePattern) =>
+        pathname.startsWith(routePattern)
+      );
+
+      if (matchedPath) {
+        const allowedRoles = methodPaths[matchedPath];
+        if (!allowedRoles.includes(role)) {
+          return NextResponse.json({ error: "User does not have permission for this route" }, { status: 403 });
+        }
       }
     }
 
