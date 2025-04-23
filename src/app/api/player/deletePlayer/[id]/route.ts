@@ -1,20 +1,33 @@
+import { CommonErrorHandler } from "@/customErrors/CommonError";
 import { sendError } from "@/response/error";
 import { deletePlayer } from "@/service/playerService/DeletePlayerById";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function DELETE(req:NextRequest,{params}:{params:{id:string}}):Promise<NextResponse> {
+export async function DELETE(
+    req: NextRequest,
+    { params }: { params: { id: string } },
+): Promise<NextResponse> {
     try {
-        const id=params.id;
-        if(!id){
+        const id = params.id;
+        if (!id) {
             return sendError("Missing required parameter: id", 400);
         }
-        const playerId=await deletePlayer(parseInt(id));
-        
+        const playerId = await deletePlayer(parseInt(id));
+
         return NextResponse.json(
-            {message:"Player deleted successfully",data:playerId},
-            {status:200})
-      } catch (error) {
-        console.error("Some error occured while deleting player",error);
-        return sendError(error instanceof Error?error.message:"Some error occured while deleting player",500);
+            { message: "Player deleted successfully", data: playerId },
+            { status: 200 },
+        );
+    } catch (error) {
+        console.error("Some error occured while deleting player", error);
+
+        if (error instanceof CommonErrorHandler) {
+            return sendError(error.message, error.statusCode);
+        }
+
+        return sendError(
+            "Some error occured while deleting player",
+            500,
+        );
     }
 }

@@ -1,7 +1,5 @@
-
-export function AdminEmailMessage(name:string): string {
-    return `
-              <div style="font-family: Arial, sans-serif; color: #333;">
+export function AdminEmailMessage(name: string): string {
+  return `<div style="font-family: Arial, sans-serif; color: #333;">
                 <h1 style="color: #1e88e5;">Welcome to Mufasa! 🦁</h1>
                 <p>Hi ${name},</p>
                 <p>We're excited to welcome you to <strong>Mufasa – Teams and Player Management System</strong>!</p>
@@ -19,11 +17,11 @@ export function AdminEmailMessage(name:string): string {
                 <br/>
                 <p>Best regards,<br/><strong>The Mufasa Team</strong></p>
               </div>
-              `
+              `;
 }
 
-export  function NormalUserMailMessage(name:string):string{
-    return `<div style="font-family: Arial, sans-serif; color: #333;">
+export function NormalUserMailMessage(name: string): string {
+  return `<div style="font-family: Arial, sans-serif; color: #333;">
   <h1 style="color: #1e88e5;">Welcome to Mufasa! 🦁</h1>
   <p>Hi ${name},</p>
   <p>Welcome to <strong>Mufasa – Teams and Player Management System</strong>!</p>
@@ -40,5 +38,5 @@ export  function NormalUserMailMessage(name:string):string{
   <br/>
   <p>Best regards,<br/><strong>The Mufasa Team</strong></p>
 </div>
-`
+`;
 }

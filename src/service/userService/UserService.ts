@@ -1,13 +1,14 @@
 import { User } from "@/models/userModels/UserModel";
 import prisma from "@/lib/prism-client";
-import { UserAlreadyExistsError } from "@/customErrors/UserAlreadyExistByError";
 
 
-export const checkExistingUserByEmail = async (email: string)=> {
-    const user = await prisma.user.findUnique({
-        where: { email: email },
-    }); 
-   return user;
+
+export const checkExistingUserByEmail = async (email: string): Promise<number> => {
+
+    const count=await prisma.user.count({
+        where:{email:email}
+    })
+    return count;
 }
 export const createNewUser = async (userData: User): Promise<number> => {
     const user = await prisma.user.create({
@@ -20,5 +21,13 @@ export const createNewUser = async (userData: User): Promise<number> => {
     });
     return user.id;
 };
+
+export const findById=async(email:string)=>{
+   const user=await prisma.user.findUnique({
+       where:{email:email}
+   })
+
+   return user;
+} 
 
 

@@ -1,5 +1,5 @@
 import { User } from "@/models/userModels/UserModel";
-import { UserAlreadyExistsError } from "@/customErrors/UserAlreadyExistByError";
+import { CommonErrorHandler } from "@/customErrors/CommonError";
 import { checkExistingUserByEmail, createNewUser } from "./UserService";
 import { EmailModel } from "@/models/userModels/EmailModel";
 import { sendMail } from "./EmailService";
@@ -7,9 +7,9 @@ import { AdminEmailMessage, NormalUserMailMessage } from "@/shared/constants/Ema
 
 export const createUser = async (userData: User) :Promise<number>=> {
 
-    const exitingUserByEmail:User|null = await checkExistingUserByEmail(userData.email);
-    if (exitingUserByEmail) {
-        throw new UserAlreadyExistsError("User already exists by email: " + userData.email);
+    const exitingUserByEmailCount:number = await checkExistingUserByEmail(userData.email);
+    if (exitingUserByEmailCount>0) {
+        throw new CommonErrorHandler("User already exists by email: " + userData.email,400);
     }
 
     const userId:number=await createNewUser(userData);

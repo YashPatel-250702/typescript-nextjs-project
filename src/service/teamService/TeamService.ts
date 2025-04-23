@@ -1,17 +1,25 @@
 import prisma from "@/lib/prism-client";
 import { Team } from "@/models/teamModels/TeamsModel";
 
-export const checkExistingTeam = async (name: string)=> {
-  const existingTeam = await prisma.teams.findUnique({
+export const checkExistingTeamByName = async (
+  name: string,
+): Promise<number> => {
+  const count = await prisma.teams.count({
     where: { name: name },
   });
 
-  return existingTeam;
+  return count;
+};
 
-}
+export const checkExistingTeamById = async (id: number): Promise<number> => {
+  const count = await prisma.teams.count({
+    where: { id: id },
+  });
 
-export const addNewTeam=async(team:Team):Promise<number>=> {
-   
+  return count;
+};
+
+export const addNewTeam = async (team: Team): Promise<number> => {
   const newTeam = await prisma.teams.create({
     data: {
       name: team.name,
@@ -23,24 +31,22 @@ export const addNewTeam=async(team:Team):Promise<number>=> {
   });
 
   return newTeam.id;
-}
+};
 
-
-export const findTeamById = async (id: number)=> {
+export const findTeamById = async (id: number) => {
   const existingTeam = await prisma.teams.findUnique({
     where: { id: id },
   });
 
   return existingTeam;
+};
 
-}
-
-export const findAll=async()=>{
-  const allTeams=await prisma.teams.findMany();
+export const findAll = async () => {
+  const allTeams = await prisma.teams.findMany();
   return allTeams;
-}
+};
 
-export const deleteTeamById=async(id:number)=>{
-  const result= await prisma.teams.delete({where:{id:id}}); 
+export const deleteTeamById = async (id: number) => {
+  const result = await prisma.teams.delete({ where: { id: id } });
   return result.id;
-}
+};

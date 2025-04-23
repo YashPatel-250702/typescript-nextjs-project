@@ -1,50 +1,55 @@
 import prisma from "@/lib/prism-client";
 import { Player } from "@/models/playerModels/PlayerModel";
 
+export const checkExistingPlayerWithJersyNo = async (
+  jersyNo: number,
+): Promise<number> => {
+  const count = await prisma.player.count({
+    where: { jersyNo: jersyNo },
+  });
 
-export const checkExistingPlayer = async (jersyNo: number) => {
+  return count;
+};
 
-    const existingPlayer = await prisma.player.findUnique({
-        where: { jersyNo: jersyNo },
-    });
-    
-    return existingPlayer;
-}
+export const checkExistingPlayerId = async (
+  playerId: number,
+): Promise<number> => {
+  const count = await prisma.player.count({ where: { id: playerId } });
+  return count;
+};
 
-export const addNewPlayer=async(player:Player)=>{
-    
-    const newPlayer = await prisma.player.create({
-        data: {
-          name: player.name,
-          jersyNo: player.jersyNo,
-          teamId: player.teamId,
-          role: player.role,
-          age: player.age,
-          totalRuns: player.totalRuns,
-          totalWickets: player.totalWickets,
-          noOfMatchPlayed: player.noOfMatchPlayed
-        }
-      });
+export const addNewPlayer = async (player: Player) => {
+  const newPlayer = await prisma.player.create({
+    data: {
+      name: player.name,
+      jersyNo: player.jersyNo,
+      teamId: player.teamId,
+      role: player.role,
+      age: player.age,
+      totalRuns: player.totalRuns,
+      totalWickets: player.totalWickets,
+      noOfMatchPlayed: player.noOfMatchPlayed,
+    },
+  });
 
-    return newPlayer.id;   
-}
+  return newPlayer.id;
+};
 
-export const findPlayerById = async (id: number)=> {
-    const existingPlayer = await prisma.player.findUnique({
-      where: { id: id },
-    }); 
-   return existingPlayer;
-}
+export const findPlayerById = async (id: number) => {
+  const existingPlayer = await prisma.player.findUnique({
+    where: { id: id },
+  });
+  return existingPlayer;
+};
 
-export const findAll=async()=> {
-    const allPlayers=await prisma.player.findMany(
-     // {include:{team:true}}
-    );
-    return allPlayers;
-}
+export const findAll = async () => {
+  const allPlayers = await prisma.player.findMany(
+    // {include:{team:true}}
+  );
+  return allPlayers;
+};
 
-export const deletePlayerById=async(id:number)=>{
-   const result= await prisma.player.delete({where:{id:id}}); 
-   return result.id;
-}
-
+export const deletePlayerById = async (id: number) => {
+  const result = await prisma.player.delete({ where: { id: id } });
+  return result.id;
+};

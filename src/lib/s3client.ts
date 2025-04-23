@@ -1,5 +1,5 @@
-import { config } from 'dotenv';
-import { S3Client } from '@aws-sdk/client-s3';
+import { config } from "dotenv";
+import { S3Client } from "@aws-sdk/client-s3";
 
 export function getS3Client() {
     config();
@@ -8,14 +8,16 @@ export function getS3Client() {
     const secretKey = process.env.AWS_SECRET_KEY;
     const region = process.env.AWS_REGION;
 
-  
     if (!accessKey || !secretKey || !region) {
-        throw new Error('Missing required AWS credentials in environment variables');
+        throw new Error(
+            "Missing required AWS credentials in environment variables",
+        );
     }
 
-    const s3=new S3Client({
-        region:region,
-        credentials:{accessKeyId:accessKey,secretAccessKey:secretKey}});
+    const s3 = new S3Client({
+        region: region,
+        credentials: { accessKeyId: accessKey, secretAccessKey: secretKey },
+    });
 
-        return s3;
+    return s3;
 }

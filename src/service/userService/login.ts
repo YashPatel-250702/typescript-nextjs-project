@@ -1,25 +1,25 @@
-import { UserNotFoundError } from "@/customErrors/UserNotFOundError";
+
 import prisma from "@/lib/prism-client";
 import bcrypt from "bcrypt";
 import { generateToekn } from "../authService/JwtToken";
 import { LoginResponse } from "@/response/LoginResponse";
-import { InvalidPasswordError } from "@/customErrors/InavlidPasswordError";
-import { checkExistingUserByEmail } from "./UserService";
+import { CommonErrorHandler } from "@/customErrors/CommonError";
+import { checkExistingUserByEmail, findById } from "./UserService";
 import { JwtPayload } from "@/shared/JwtPayload";
 import { User } from "@/models/userModels/UserModel";
 
 
 export const loginAndGenerateToken=async(email:string,password:string):Promise<LoginResponse>=>{
 
-    const user=await checkExistingUserByEmail(email);
+    const user=await findById(email);
 
     if(!user){
-        throw new UserNotFoundError("User not found with email: "+email);
+        throw new CommonErrorHandler("User not found with email: "+email,404);
     }
     const isPasswordMatch=await bcrypt.compare(password,user.password);
 
     if(!isPasswordMatch){
-        throw new InvalidPasswordError("Invalid password");
+        throw new CommonErrorHandler("Invalid password",400);
     }
     try{
         const payload:JwtPayload={userId:user.id,role:user.role};
