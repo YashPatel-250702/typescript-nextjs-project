@@ -3,7 +3,7 @@ import { UserAlreadyExistsError } from "@/customErrors/UserAlreadyExistByError";
 import { checkExistingUserByEmail, createNewUser } from "./UserService";
 import { EmailModel } from "@/models/userModels/EmailModel";
 import { sendMail } from "./EmailService";
-import { AdminEmailMessage, NormalUserMailMessage } from "@/shared/EmailMessageConstant";
+import { AdminEmailMessage, NormalUserMailMessage } from "@/shared/constants/EmailMessageConstant";
 
 export const createUser = async (userData: User) :Promise<number>=> {
 

@@ -6,7 +6,7 @@ const secret = new TextEncoder().encode(
 export async function generateToekn(payload: { userId: number; role: string }):Promise<string> {
 
     const iat = Math.floor(Date.now() / 1000);
-    const exp = iat + 60 * 60 * 24 * 7; 
+    const exp = iat + 60 * 60 * 24 * 1; 
 
     const token = new SignJWT({ payload })
         .setProtectedHeader({ alg: "HS256" })

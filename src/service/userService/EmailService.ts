@@ -16,11 +16,12 @@ export async function sendMail(emailModel:EmailModel) {
       });
 
       await transporter.sendMail({
-        from: process.env.FROM_MAIL,
-        to:emailModel.toEmail,
-        subject:emailModel.subject,
-        html:emailModel.message,
+        from: `"Mufasa Team & Player Management" <${process.env.FROM_MAIL}>`,
+        to: emailModel.toEmail,
+        subject: emailModel.subject,
+        html: emailModel.message,
       });
+      
       console.log("Email sent successfully");
    } catch (error) {
       throw new Error("Error while sending email");
