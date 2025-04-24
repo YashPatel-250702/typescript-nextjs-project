@@ -1,5 +1,5 @@
 import { CommonErrorHandler } from "@/customErrors/CommonError";
-import { sendError } from "@/response/error";
+import { sendError } from "@/customErrors/error";
 import { updateUser } from "@/service/userService/UpdateUser";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcrypt";

@@ -1,5 +1,5 @@
 import { CommonErrorHandler } from "@/customErrors/CommonError";
-import { sendError } from "@/response/error";
+import { sendError } from "@/customErrors/error";
 import { getPlayerById } from "@/service/playerService/GetPlayer";
 import { NextRequest, NextResponse } from "next/server";
 

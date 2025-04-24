@@ -1,5 +1,5 @@
 import { CommonErrorHandler } from "@/customErrors/CommonError";
-import { sendError } from "@/response/error";
+import { sendError } from "@/customErrors/error";
 import { LoginResponse } from "@/response/LoginResponse";
 import { loginAndGenerateToken } from "@/service/userService/login";
 import { NextRequest, NextResponse } from "next/server";
