@@ -4,14 +4,14 @@ import bcrypt from "bcrypt";
 import { generateToekn } from "../authService/JwtToken";
 import { LoginResponse } from "@/response/LoginResponse";
 import { CommonErrorHandler } from "@/customErrors/CommonError";
-import { checkExistingUserByEmail, findById } from "./UserService";
+import { checkExistingUserByEmail, findUserByEmail } from "./UserService";
 import { JwtPayload } from "@/shared/JwtPayload";
 import { User } from "@/models/userModels/UserModel";
 
 
 export const loginAndGenerateToken=async(email:string,password:string):Promise<LoginResponse>=>{
 
-    const user=await findById(email);
+    const user=await findUserByEmail(email);
 
     if(!user){
         throw new CommonErrorHandler("User not found with email: "+email,404);

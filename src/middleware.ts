@@ -39,8 +39,10 @@ export default async function userAuthentication(req: NextRequest) {
         pathname.startsWith(routePattern)
       );
 
+      console.log("matchedPath", matchedPath);
       if (matchedPath) {
         const allowedRoles = methodPaths[matchedPath];
+        console.log("allowedRoles", allowedRoles);
         if (!allowedRoles.includes(role)) {
           return NextResponse.json({
             error: "User does not have permission for this route",
@@ -60,5 +62,6 @@ export const config = {
   matcher: [
     "/api/player/:path*",
     "/api/team/:path*",
+    "/api/user/:path((?!login|register).*)",
   ],
 };

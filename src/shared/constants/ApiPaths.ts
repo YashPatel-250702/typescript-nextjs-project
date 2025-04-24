@@ -1,4 +1,8 @@
 export enum API_PATHS {
+
+    GET_USER_BYID = "/api/user/getuser/",
+    UPDATE_USER_BYID = "/api/user/updateUser/",
+
     ADD_PLAYER_PATH = "/api/player/addPlayer",
     ADD_PLAYER_IMAGE_PATH = "/api/player/image/addImage/",
     GET_PLAYER_PATH_ID = "/api/player/getPlayer/",

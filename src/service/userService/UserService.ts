@@ -20,6 +20,13 @@ export const createNewUser = async (userData: User): Promise<number> => {
     });
     return user.id;
 };
+export const findUserByEmail = async (email: string) => {
+    const user = await prisma.user.findUnique({
+        where: { email: email },
+    });
+
+    return user;
+};
 
 export const findUserById = async (id: number) => {
     const user = await prisma.user.findUnique({

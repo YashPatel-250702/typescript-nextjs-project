@@ -1,6 +1,7 @@
 import { HttpMethods } from "./constants/HttpMethods";
 import { API_PATHS } from "./constants/ApiPaths";
 import { ROLES } from "./constants/Roles";
+import { HTTP_METHODS } from "next/dist/server/web/http";
 
 export const RolePermission: Record<string, any> = {
   [HttpMethods.POST]: {
@@ -17,6 +18,11 @@ export const RolePermission: Record<string, any> = {
   },
 
   [HttpMethods.GET]: {
+    [API_PATHS.GET_USER_BYID]: [
+      ROLES.ADMIN,
+      ROLES.USER,
+    ],
+    
     [API_PATHS.GET_ALL_PLAYERS_PATH]: [
       ROLES.ADMIN,
       ROLES.USER,
@@ -47,4 +53,11 @@ export const RolePermission: Record<string, any> = {
       ROLES.ADMIN,
     ],
   },
+  [HttpMethods.PUT]:{
+    [API_PATHS.UPDATE_USER_BYID]: [
+      ROLES.ADMIN,
+      ROLES.USER
+    ],
+
+  }
 };
