@@ -2,11 +2,12 @@ import { User } from "@/models/userModels/UserModel";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import { createUser } from "@/service/userService/Register";
-import { sendError } from "@/customErrors/error";
+
 import { UserDataValidation } from "@/validations/UserDataValidation";
 import { record } from "zod";
 import { sendValidationResponse } from "@/response/ValidationResponse";
 import { CommonErrorHandler } from "@/customErrors/CommonError";
+import { sendError } from "@/customErrors/error";
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
   try {

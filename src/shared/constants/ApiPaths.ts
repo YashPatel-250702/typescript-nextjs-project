@@ -8,6 +8,9 @@ export enum API_PATHS {
     GET_PLAYER_PATH_ID = "/api/player/getPlayer/",
     GET_ALL_PLAYERS_PATH = "/api/player/getPlayer",
     GET_PLAYER_IMAGE_PATH = "/api/player/image/getImage/",
+    UPDATE_PLAYER_BYID = "/api/player/updatePlayer/",
+
+
 
     ADD_TEAM_PATH = "/api/team/createTeam",
     GET_TEAM_PATH_ID = "/api/team/getTeams/",

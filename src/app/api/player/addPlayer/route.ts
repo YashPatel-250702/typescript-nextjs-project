@@ -1,6 +1,7 @@
 import { CommonErrorHandler } from "@/customErrors/CommonError";
-import { Player } from "@/models/playerModels/PlayerModel";
 import { sendError } from "@/customErrors/error";
+import { Player } from "@/models/playerModels/PlayerModel";
+
 import { sendValidationResponse } from "@/response/ValidationResponse";
 import { addPlayer } from "@/service/playerService/CreatePlayer";
 import { playerDataValidation } from "@/validations/PlayerValidation";

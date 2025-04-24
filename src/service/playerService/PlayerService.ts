@@ -53,3 +53,11 @@ export const deletePlayerById = async (id: number) => {
   const result = await prisma.player.delete({ where: { id: id } });
   return result.id;
 };
+
+export const updatePlayerId=async(playerId:number,player:Player):Promise<Player>=>{
+    const updatedPlayer=await prisma.player.update({
+        where:{id:playerId},
+        data:player
+    });
+    return updatedPlayer;
+}

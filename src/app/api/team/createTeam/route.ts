@@ -1,6 +1,7 @@
 import { CommonErrorHandler } from "@/customErrors/CommonError";
-import { Team } from "@/models/teamModels/TeamsModel";
 import { sendError } from "@/customErrors/error";
+import { Team } from "@/models/teamModels/TeamsModel";
+
 import { sendValidationResponse } from "@/response/ValidationResponse";
 import { createTeam } from "@/service/teamService/CreateTeam";
 import { teamDataValidation } from "@/validations/TeamDataValidation";

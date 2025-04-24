@@ -10,7 +10,6 @@ export const RolePermission: Record<string, any> = {
     ],
     [API_PATHS.ADD_PLAYER_IMAGE_PATH]: [
       ROLES.ADMIN,
-      ROLES.USER,
     ],
     [API_PATHS.ADD_TEAM_PATH]: [
       ROLES.ADMIN,
@@ -59,5 +58,10 @@ export const RolePermission: Record<string, any> = {
       ROLES.USER
     ],
 
+    [API_PATHS.UPDATE_PLAYER_BYID]:[
+      ROLES.ADMIN,
+    ]
+
+    
   }
 };
