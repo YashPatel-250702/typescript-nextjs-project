@@ -9,7 +9,7 @@ export async function generateToekn(
     const iat = Math.floor(Date.now() / 1000);
     const exp = iat + 60 * 60 * 24 * 1;
 
-    const token = new SignJWT({ payload })
+    const token:string = await new SignJWT({ payload })
         .setProtectedHeader({ alg: "HS256" })
         .setIssuedAt(iat)
         .setExpirationTime(exp)
