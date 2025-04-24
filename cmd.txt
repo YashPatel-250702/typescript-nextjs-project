@@ -33,11 +33,12 @@ Step 7: install zod library for validation
 
  npm install jose
 
+npm uninstall swagger-jsdoc swagger-ui-react
+npm uninstall --save-dev @types/swagger-ui-express
 
-npm install -g @nestjs/cli
+npm uninstall --save-dev @types/swagger-jsdoc
 
-nest g gu auth/decoraors  --flat --no-spec
-nest g gu auth/gaurds/roles  --flat --no-spec
+
 
 
 

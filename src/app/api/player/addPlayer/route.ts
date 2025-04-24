@@ -25,7 +25,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
         console.error("Some error occured while creating player", error);
 
         if (error instanceof CommonErrorHandler) {
-            return sendError(error.message, error.statusCode);
+            return sendError(error.message, 400);
         }
 
         return sendError(
