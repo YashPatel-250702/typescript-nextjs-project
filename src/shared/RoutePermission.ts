@@ -2,6 +2,7 @@ import { HttpMethods } from "./constants/HttpMethods";
 import { API_PATHS } from "./constants/ApiPaths";
 import { ROLES } from "./constants/Roles";
 import { HTTP_METHODS } from "next/dist/server/web/http";
+import { Role } from "@prisma/client";
 
 export const RolePermission: Record<string, any> = {
   [HttpMethods.POST]: {
@@ -42,6 +43,8 @@ export const RolePermission: Record<string, any> = {
       ROLES.ADMIN,
       ROLES.USER,
     ],
+
+    
   },
 
   [HttpMethods.DELETE]: {
@@ -60,6 +63,9 @@ export const RolePermission: Record<string, any> = {
 
     [API_PATHS.UPDATE_PLAYER_BYID]:[
       ROLES.ADMIN,
+    ],
+    [API_PATHS.UPDATE_TEAM_BYID]:[
+      ROLES.ADMIN
     ]
 
     

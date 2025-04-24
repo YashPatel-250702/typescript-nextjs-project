@@ -50,3 +50,13 @@ export const deleteTeamById = async (id: number) => {
   const result = await prisma.teams.delete({ where: { id: id } });
   return result.id;
 };
+
+export const updateTeamById=async (teamId:number,team:Team):Promise<Team>=> {
+  
+  const result=await prisma.teams.update({
+    where:{id:teamId},
+    data:team
+  });
+  return result;
+  
+}

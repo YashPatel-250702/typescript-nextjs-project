@@ -1,9 +1,7 @@
 import prisma from "@/lib/prism-client";
 import { Player } from "@/models/playerModels/PlayerModel";
 
-export const checkExistingPlayerWithJersyNo = async (
-  jersyNo: number,
-): Promise<number> => {
+export const checkExistingPlayerWithJersyNo = async (jersyNo: number,): Promise<number> => {
   const count = await prisma.player.count({
     where: { jersyNo: jersyNo },
   });
@@ -11,9 +9,7 @@ export const checkExistingPlayerWithJersyNo = async (
   return count;
 };
 
-export const checkExistingPlayerId = async (
-  playerId: number,
-): Promise<number> => {
+export const checkExistingPlayerId = async (playerId: number): Promise<number> => {
   const count = await prisma.player.count({ where: { id: playerId } });
   return count;
 };
@@ -60,4 +56,11 @@ export const updatePlayerId=async(playerId:number,player:Player):Promise<Player>
         data:player
     });
     return updatedPlayer;
+}
+
+export const getPlayerByTeamId=async(teamId:number):Promise<Player[]>=>{
+    const players=await prisma.player.findMany({
+        where:{teamId:teamId}
+    });
+    return players;
 }
