@@ -2,6 +2,10 @@ export enum API_PATHS {
 
     GET_USER_BYID = "/api/user/getuser/",
     UPDATE_USER_BYID = "/api/user/updateUser/",
+    FORGET_PASSWORD_SEND_OTP="/api/user/forgetpassword/sendOtpToMail",
+    FORGET_PASSWORD_VERIFY_OTP="/api/user/forgetpassword/verifyOtp",
+    FORGET_PASSWORD="/api/user/forgetpassword/updatePassword",
+
 
     ADD_PLAYER_PATH = "/api/player/addPlayer",
     ADD_PLAYER_IMAGE_PATH = "/api/player/image/addImage/",

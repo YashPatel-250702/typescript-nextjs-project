@@ -1,10 +1,10 @@
 import { HttpMethods } from "./constants/HttpMethods";
 import { API_PATHS } from "./constants/ApiPaths";
 import { ROLES } from "./constants/Roles";
-import { HTTP_METHODS } from "next/dist/server/web/http";
-import { Role } from "@prisma/client";
+
 
 export const RolePermission: Record<string, any> = {
+  
   [HttpMethods.POST]: {
     [API_PATHS.ADD_PLAYER_PATH]: [
       ROLES.ADMIN,
@@ -15,6 +15,12 @@ export const RolePermission: Record<string, any> = {
     [API_PATHS.ADD_TEAM_PATH]: [
       ROLES.ADMIN,
     ],
+
+    [API_PATHS.FORGET_PASSWORD]:[
+      ROLES.ADMIN,
+      ROLES.USER
+    ] ,
+    
   },
 
   [HttpMethods.GET]: {
@@ -44,8 +50,8 @@ export const RolePermission: Record<string, any> = {
       ROLES.USER,
     ],
 
-    
   },
+
 
   [HttpMethods.DELETE]: {
     [API_PATHS.DELETE_PLAYER_BYID]: [
@@ -55,6 +61,7 @@ export const RolePermission: Record<string, any> = {
       ROLES.ADMIN,
     ],
   },
+
   [HttpMethods.PUT]:{
     [API_PATHS.UPDATE_USER_BYID]: [
       ROLES.ADMIN,
@@ -66,8 +73,11 @@ export const RolePermission: Record<string, any> = {
     ],
     [API_PATHS.UPDATE_TEAM_BYID]:[
       ROLES.ADMIN
-    ]
-
-    
+    ],
+   
+    [API_PATHS.FORGET_PASSWORD_VERIFY_OTP]:[
+      ROLES.ADMIN,
+      ROLES.USER
+    ],
   }
 };

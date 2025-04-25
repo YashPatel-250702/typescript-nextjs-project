@@ -6,5 +6,8 @@ export const UserDataValidation = z.object({
         "Name must be at least 3 characters",
     ).max(20, "Name must be at most 20 characters"),
     email: z.string().email("Email is required"),
-    password: z.string().min(6, "Password must be at least 6 characters"),
-});
+    password: z.string()
+    .length(8, "Password must be exactly 8 characters long")
+    .regex(/(?=.*[a-z])(?=[A-Z])(?=.*[^a-zA-Z0-9])/, "Password must contain a combination of lowercase,uppercase and at least one special character")
+});  
+

@@ -40,3 +40,20 @@ export function NormalUserMailMessage(name: string): string {
 </div>
 `;
 }
+
+export function ForgotPasswordOtpMailMessage(name: string, otp: string): string {
+  return `<div style="font-family: Arial, sans-serif; color: #333;">
+    <h1 style="color: #e53935;">Password Reset Request 🔐</h1>
+    <h4>Hi ${name},</h4>
+    <p>We received a request to reset your password for your <strong>Mufasa</strong> account.</p>
+    <p>Please use the following One-Time Password (OTP) to proceed:</p>
+    <div style="font-size: 24px; font-weight: bold; background-color: #f1f1f1; padding: 12px 20px; display: inline-block; border-radius: 6px; margin: 16px 0;">
+      ${otp}
+    </div>
+    <p>This OTP is valid for the next <strong>5 minutes</strong>. Please do not share this code with anyone.</p>
+    <p>If you didn't request this password reset, you can safely ignore this email – your account is still secure.</p>
+    <p>If you need help, feel free to contact our support team.</p>
+    <br/>
+    <p>Best regards,<br/><strong>The Mufasa Team</strong></p>
+  </div>`;
+}

@@ -20,6 +20,7 @@ export const createNewUser = async (userData: User): Promise<number> => {
     });
     return user.id;
 };
+
 export const findUserByEmail = async (email: string) => {
     const user = await prisma.user.findUnique({
         where: { email: email },
@@ -49,4 +50,12 @@ export const updateUserById=async(userId:number,user:User):Promise<User>=>{
         data:user
     })
     return updatedUser;
+}
+
+export const updatePassword=async(email:string,password:string)=>{
+   const updatedUser=await prisma.user.update({
+       where:{email:email},
+       data:{password:password}
+   })
+   return updatePassword;
 }
