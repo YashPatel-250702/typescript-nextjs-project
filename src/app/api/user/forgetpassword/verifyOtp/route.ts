@@ -36,7 +36,6 @@ export async function PUT(req: NextRequest) {
         if(error instanceof CommonErrorHandler){
             return sendError(error.message,error.statusCode);
         }
-        return sendError("Some error occured while verifying otp",500);
-        
+        return sendError("Some error occured while verifying otp",500); 
     }
 }

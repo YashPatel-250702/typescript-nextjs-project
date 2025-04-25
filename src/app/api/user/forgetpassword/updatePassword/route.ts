@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
     if(!regex.test(password)){
       throw new CommonErrorHandler("Password must contain a combination of lowercase,uppercase and at least one special character",400);
     }
-
+    
     await sendPassworResetMail(email, password, userOtp);
 
     const hashedPassword: string = await bcrypt.hash(password, 10);
