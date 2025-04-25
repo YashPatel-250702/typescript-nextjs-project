@@ -6,6 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function PUT(req: NextRequest) {
    try {
+    
       const {email,otp}=await req.json();
        if(!email||!otp){
          return sendError("Email and Otp is required",400);
