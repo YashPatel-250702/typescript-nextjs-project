@@ -1,4 +1,4 @@
-"use client"; // 👈 Add this at the very top
+"use client"; 
 
 import React, { useState } from "react";
 
@@ -9,7 +9,6 @@ export default function Register() {
     password: "",
   });
 
-  
 
   const handleChange = (e:any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
