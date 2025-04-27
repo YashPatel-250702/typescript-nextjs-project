@@ -17,7 +17,6 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
             return sendValidationResponse(validatedData);
         }
         const playerId = await addPlayer(player);
-
         return NextResponse.json(
             { "Player Saved successfully": playerId },
             { status: 200 },
@@ -28,7 +27,6 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
         if (error instanceof CommonErrorHandler) {
             return sendError(error.message, 400);
         }
-
         return sendError(
             "Some error occured while creating player",
             500,
